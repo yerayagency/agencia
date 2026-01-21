@@ -62,6 +62,7 @@
         }
 
         h1 {
+            /* PC: Ajustado para 1 línea + salto */
             font-size: 4rem; 
             font-weight: 700; line-height: 1.1;
             margin-bottom: 25px;
@@ -100,13 +101,13 @@
         /* --- PORTFOLIO --- */
         .project-showcase {
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            border-radius: 12px; overflow: hidden; position: relative; /* Necesario para el indicador */
+            border-radius: 12px; overflow: hidden; position: relative;
         }
         
-        /* 🔥 INDICADOR DE DESLIZAR (NUEVO) */
+        /* INDICADOR DE DESLIZAR */
         .swipe-hint {
             position: absolute;
-            bottom: 20px; right: 20px; /* Esquina inferior derecha de la foto */
+            bottom: 20px; right: 20px; 
             background: rgba(0,0,0,0.7);
             color: var(--accent);
             padding: 6px 15px;
@@ -114,7 +115,7 @@
             font-size: 0.75rem;
             font-weight: bold;
             border: 1px solid var(--accent);
-            pointer-events: none; /* Para que puedas tocar la foto a través del texto */
+            pointer-events: none; 
             z-index: 10;
             animation: pulseSwipe 2s infinite ease-in-out;
             text-transform: uppercase;
@@ -195,7 +196,7 @@
         .footer-links a:hover { color: var(--accent); }
 
         /* =========================================
-           📱 MÓVIL (INTACTO + HINT ADJUST)
+           📱 MÓVIL (AJUSTES FINALES)
            ========================================= */
         @media (max-width: 768px) {
             
@@ -216,12 +217,8 @@
 
             .contact-section h2.section-title { font-size: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             
-            /* Ajuste del Hint para móvil */
-            .swipe-hint {
-                bottom: 10px; right: 10px; 
-                padding: 4px 10px;
-                font-size: 0.65rem;
-            }
+            /* Ajuste Hint */
+            .swipe-hint { bottom: 10px; right: 10px; padding: 4px 10px; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -321,6 +318,14 @@
                 </select>
 
                 <textarea id="mensaje" rows="4" placeholder="Cuéntame brevemente tu objetivo..."></textarea>
+                
+                <div style="text-align: left; font-size: 0.8rem; color: #999; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="legal-check" required style="width: auto; margin-top: 5px; cursor: pointer; accent-color: var(--accent);">
+                    <label for="legal-check" style="cursor: pointer;">
+                        He leído y acepto la <a href="#" style="color: var(--accent); text-decoration: none;">Política de Privacidad</a> y el <a href="#" style="color: var(--accent); text-decoration: none;">Aviso Legal</a> para el tratamiento de mis datos.
+                    </label>
+                </div>
+
                 <button type="submit" class="submit-btn" id="submitBtn">SOLICITAR ANÁLISIS</button>
             </form>
         </div>
