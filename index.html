@@ -10,11 +10,11 @@
         :root {
             --bg-color: #050505;
             --card-bg: rgba(20, 20, 20, 0.6);
-            --accent: #2bdeb3; /* Tu verde marca elegante */
-            --accent-glow: rgba(43, 222, 179, 0.3);
+            --accent: #2bdeb3; /* Tu verde marca */
+            --accent-glow: rgba(43, 222, 179, 0.4); /* Más brillo */
             --text-main: #ffffff;
             --text-muted: #9ca3af;
-            --border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -27,20 +27,22 @@
             line-height: 1.6;
         }
 
-        /* --- FONDO AMBIENTAL (Recuperado de V1) --- */
+        /* --- FONDO AMBIENTAL (MÁS COLOR / VIBRANTE) --- */
         .ambient-light {
-            position: fixed; top: -20%; left: -20%; width: 80vw; height: 80vw;
-            background: radial-gradient(circle, rgba(43, 222, 179, 0.1), transparent 60%); /* Verde */
-            border-radius: 50%; z-index: -1; opacity: 0.5;
-            animation: floatLight 15s infinite alternate ease-in-out;
+            position: fixed; top: -10%; left: -10%; width: 70vw; height: 70vw;
+            /* He subido la opacidad del color para que resalte más */
+            background: radial-gradient(circle, rgba(43, 222, 179, 0.25), transparent 65%); 
+            border-radius: 50%; z-index: -1; opacity: 0.8; /* Más visible */
+            animation: floatLight 12s infinite alternate ease-in-out;
         }
         .ambient-light.two { 
-            top: auto; bottom: -20%; left: auto; right: -10%; 
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%); /* Un toque azul sutil */
-            animation-delay: 7s; 
+            top: auto; bottom: -10%; left: auto; right: -5%; 
+            /* Un azul/violeta sutil para contraste */
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 65%);
+            animation-delay: 6s; opacity: 0.7;
         }
 
-        @keyframes floatLight { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 30px) scale(1.1); } }
+        @keyframes floatLight { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 20px) scale(1.05); } }
 
         /* --- UTILIDADES --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -62,19 +64,23 @@
         }
 
         h1 {
-            font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.1;
+            /* TAMAÑO REDUCIDO: Antes era 5.5rem, ahora máximo 4.2rem */
+            font-size: clamp(2.5rem, 5vw, 4.2rem); 
+            font-weight: 700; line-height: 1.1;
             margin-bottom: 25px;
-            /* Degradado sutil de blanco a gris claro */
             background: linear-gradient(to bottom right, #ffffff, #b3b3b3);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            max-width: 900px; /* Evita que se estire demasiado */
         }
 
         .subtitle {
-            font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin-bottom: 50px; font-weight: 300;
+            font-size: 1.2rem; color: var(--text-muted); max-width: 700px; 
+            margin: 0 auto 50px auto; /* CENTRADO PERFECTO */
+            font-weight: 300;
         }
 
         .cta-btn {
-            padding: 20px 45px; background: var(--text-main); color: #000;
+            padding: 18px 40px; background: var(--text-main); color: #000;
             text-decoration: none; font-weight: bold; border-radius: 4px;
             transition: all 0.3s ease; display: inline-block; letter-spacing: 1px;
         }
@@ -82,7 +88,7 @@
 
         /* --- SERVICIOS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 120px 20px; }
-        .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: left; border-left: 4px solid var(--accent); padding-left: 20px; }
+        .section-title { font-size: 2.2rem; margin-bottom: 60px; text-align: left; border-left: 4px solid var(--accent); padding-left: 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .card {
@@ -90,20 +96,19 @@
             transition: 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(5px);
         }
         .card:hover { transform: translateY(-7px); border-color: var(--accent); }
-        .card h3 { margin-bottom: 15px; font-size: 1.5rem; color: #fff; }
+        .card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
         .card p { color: var(--text-muted); font-size: 1rem; font-weight: 300; }
 
-        /* --- PORTFOLIO SINCRONIZADO (JS) --- */
+        /* --- PORTFOLIO --- */
         .project-showcase {
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
             border-radius: 12px; overflow: hidden;
         }
         .gallery-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            height: 450px; /* Altura de la zona de fotos */
-            align-items: center; -webkit-overflow-scrolling: touch;
+            height: 400px; align-items: center; -webkit-overflow-scrolling: touch;
         }
-        .gallery-container::-webkit-scrollbar { display: none; } /* Ocultar scrollbar */
+        .gallery-container::-webkit-scrollbar { display: none; }
         
         .gallery-item {
             flex: 0 0 100%; scroll-snap-align: center; height: 100%;
@@ -114,20 +119,25 @@
         
         .placeholder-text { color: #555; font-family: monospace; font-size: 1.2rem; text-align: center; padding: 20px;}
 
-        /* Transición suave para los textos */
-        .project-details-container { position: relative; min-height: 250px; }
+        /* Zona de textos */
+        .project-details-container { position: relative; min-height: 280px; } /* Un poco más de altura para que respire */
         .project-details { 
             padding: 40px; position: absolute; top:0; left:0; width: 100%;
             opacity: 0; transition: opacity 0.4s ease-in-out; pointer-events: none;
+            display: flex; flex-direction: column; align-items: flex-start; /* Alineación izquierda */
         }
         .project-details.active-details { opacity: 1; pointer-events: auto; z-index: 2; }
 
         .tag-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
         .tag { font-size: 0.75rem; border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; text-transform: uppercase; }
+        
+        /* ESTILO DEL LINK (V2 RECUPERADO) */
         .demo-link {
             display: inline-flex; align-items: center; gap: 10px;
-            color: #fff; text-decoration: none; font-weight: bold; margin-top: 30px;
-            border-bottom: 2px solid var(--accent); padding-bottom: 5px; transition: 0.3s;
+            color: #fff; text-decoration: none; font-weight: bold; 
+            margin-top: 25px; /* Separación correcta */
+            border-bottom: 1px solid var(--accent); padding-bottom: 5px; 
+            transition: 0.3s;
         }
         .demo-link:hover { color: var(--accent); border-color: transparent; }
 
@@ -139,7 +149,8 @@
             color: white; font-family: 'Outfit', sans-serif; transition: 0.3s; border-radius: 4px;
         }
         input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; background: rgba(0,0,0,0.2); }
-        select { appearance: none; color: var(--text-muted); } /* Estilo para el select */
+        select { appearance: none; color: #fff; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232bdeb3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 15px top 50%; background-size: 12px auto; }
+        select option { background: #000; color: #fff; }
 
         button.submit-btn {
             width: 100%; padding: 18px; background: var(--accent); color: #000;
@@ -148,7 +159,7 @@
         }
         button.submit-btn:hover { background: #fff; box-shadow: 0 5px 20px var(--accent-glow); }
 
-        /* --- FOOTER LEGAL --- */
+        /* --- FOOTER --- */
         footer {
             text-align: center; padding: 60px 20px; color: #555; font-size: 0.9rem;
             border-top: 1px solid var(--border); margin-top: 80px;
@@ -159,7 +170,7 @@
         .footer-links a:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
+            h1 { font-size: 2.8rem; }
             .subtitle { font-size: 1.1rem; }
             .gallery-container { height: 300px; }
         }
@@ -198,7 +209,7 @@
     </section>
 
     <section class="container reveal">
-        <h2 class="section-title">Casos de Estudio</h2>
+        <h2 class="section-title">Implementación Real</h2>
         
         <div class="project-showcase">
             
@@ -206,16 +217,16 @@
                 
                 <div class="gallery-item" data-slide="1">
                     <div class="placeholder-text">
-                        [ FOTO 1: RESULTADO FINAL ]<br>
+                        [ FOTO 1: WEB ]<br>
                         (Tu web Matrix)<br><br>
-                        <span style="font-size:0.9rem; color:var(--accent)">← Desliza para ver las tripas →</span>
+                        <span style="font-size:0.9rem; color:var(--accent)">← Desliza para ver el sistema →</span>
                     </div>
                     </div>
 
                 <div class="gallery-item" data-slide="2" style="background: #0f0f0f;">
                      <div class="placeholder-text" style="color: #777;">
-                        [ FOTO 2: LA MAQUINARIA ]<br>
-                        (Captura de tu flujo n8n complejo)
+                        [ FOTO 2: SISTEMA ]<br>
+                        (Captura del flujo)
                     </div>
                     </div>
             </div>
@@ -228,8 +239,8 @@
                         <span class="tag">Captación de Leads</span>
                     </div>
                     <h3>El Resultado: Experiencia de Usuario</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">
-                        Una interfaz de usuario diseñada para romper patrones. La estética "terminal hacker" aumenta la retención y convierte una simple suscripción a newsletter en una experiencia memorable. El usuario percibe valor inmediato.
+                    <p style="color: var(--text-muted); margin-bottom: 0;">
+                        Una interfaz diseñada para romper patrones. La estética "terminal" aumenta la retención y convierte una simple suscripción en una experiencia memorable. El usuario percibe valor inmediato.
                     </p>
                     <a href="https://yerayagency.github.io/glitch/" target="_blank" class="demo-link">Ver Demo en Vivo ↗</a>
                 </div>
@@ -237,11 +248,11 @@
                 <div class="project-details" id="details-2">
                      <div class="tag-list">
                         <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Backend Complex</span>
-                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">IA + n8n + Telegram</span>
+                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Sistemas Automatizados</span>
                     </div>
-                    <h3>La Maquinaria: Automatización Invisible</h3>
+                    <h3>El Motor: Automatización Invisible</h3>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">
-                        Lo que nadie ve. Un flujo complejo que: 1) Valida el email, 2) Usa GPT-4o para generar contenido único, 3) Formatea en HTML, 4) Envía vía Gmail y 5) Notifica en tiempo real al administrador por Telegram. Cero intervención humana.
+                        Lo que nadie ve. Un flujo complejo que valida emails, genera contenido único con IA, formatea el código y notifica al administrador en tiempo real. Cero intervención humana.
                     </p>
                 </div>
 
@@ -266,7 +277,7 @@
                     <option value="otro">Otro / No estoy seguro</option>
                 </select>
 
-                <textarea rows="4" placeholder="Cuéntame brevemente tu objetivo o problema actual..."></textarea>
+                <textarea rows="4" placeholder="Cuéntame brevemente tu objetivo..."></textarea>
                 <button type="submit" class="submit-btn">SOLICITAR ANÁLISIS</button>
             </form>
         </div>
@@ -283,7 +294,7 @@
     </footer>
 
     <script>
-        // --- 1. ANIMACIÓN SCROLL REVEAL (Aparición suave) ---
+        // ANIMACIÓN SCROLL
         const observerReveal = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -292,29 +303,20 @@
         document.querySelectorAll('.reveal').forEach(el => observerReveal.observe(el));
 
 
-        // --- 2. SINCRONIZACIÓN DEL SLIDER (La magia) ---
-        // Detecta qué imagen está visible y muestra su texto correspondiente
+        // SINCRONIZACIÓN SLIDER
         const galleryItems = document.querySelectorAll('.gallery-item');
         const detailBlocks = document.querySelectorAll('.project-details');
 
         const observerSlider = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Si la imagen es visible en más del 50% en pantalla
                 if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
                     const slideIndex = entry.target.getAttribute('data-slide');
-                    
-                    // 1. Ocultar todos los textos
                     detailBlocks.forEach(block => block.classList.remove('active-details'));
-                    
-                    // 2. Mostrar solo el texto que coincide con la imagen visible
                     const activeDetail = document.getElementById(`details-${slideIndex}`);
                     if (activeDetail) activeDetail.classList.add('active-details');
                 }
             });
-        }, { 
-            root: document.querySelector('.gallery-container'), // El contenedor que tiene scroll
-            threshold: 0.6 // Se activa cuando el 60% de la imagen es visible
-        });
+        }, { root: document.querySelector('.gallery-container'), threshold: 0.6 });
 
         galleryItems.forEach(item => observerSlider.observe(item));
     </script>
