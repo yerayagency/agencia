@@ -98,14 +98,14 @@
         .card h3 { margin-bottom: 15px; font-size: 1.4rem; color: #fff; }
         .card p { color: var(--text-muted); font-size: 1rem; font-weight: 300; }
 
-        /* --- PORTFOLIO (MODIFICADO PARA IMÁGENES) --- */
+        /* --- PORTFOLIO (SISTEMA DE ZOOM AUTOMÁTICO) --- */
         .project-showcase {
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
             border-radius: 12px; overflow: hidden;
         }
         .gallery-container {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            height: 450px; /* Altura escritorio */
+            height: 450px; /* Altura en PC */
             align-items: center; -webkit-overflow-scrolling: touch;
         }
         .gallery-container::-webkit-scrollbar { display: none; }
@@ -114,15 +114,14 @@
             flex: 0 0 100%; scroll-snap-align: center; height: 100%;
             display: flex; justify-content: center; align-items: center;
             position: relative; border-right: 1px solid #1a1a1a; background: #0a0a0a;
-            overflow: hidden; /* Importante para el recorte */
+            overflow: hidden; 
         }
         
-        /* ⚠️ AQUÍ ESTÁ LA MAGIA DEL RECORTE AUTOMÁTICO */
         .gallery-item img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* ESTO RECORTA Y LLENA EL ESPACIO */
-            object-position: center center; /* ESTO CENTRA LA IMAGEN */
+            object-fit: cover; 
+            object-position: center center; 
         }
         
         /* Zona de textos */
@@ -175,59 +174,37 @@
         .footer-links a:hover { color: var(--accent); }
 
         /* =========================================
-           📱 OPTIMIZACIÓN MÓVIL (MOBILE FIRST FIX)
+           📱 OPTIMIZACIÓN MÓVIL (V7.0)
            ========================================= */
         @media (max-width: 768px) {
             
-            /* 1. HERO TITLE: Comprimido para ocupar menos líneas */
+            /* 1. HERO TITLE: Ajustado al milímetro para que quepa la frase entera */
             h1 { 
-                font-size: 2.3rem; /* Mucho más pequeño */
-                line-height: 1.1; 
-                padding: 0 10px; /* Menos padding lateral para que quepa más texto */
+                font-size: 2rem; /* Reducido un poco más para evitar que "100%" salte de línea */
+                line-height: 1.2; 
+                padding: 0 5px; 
             }
             .subtitle { font-size: 1rem; margin-bottom: 30px; padding: 0 10px; }
 
-            /* 2. BOTÓN AUDITORÍA: Más pequeño y manejable */
-            .cta-btn {
-                padding: 12px 25px; /* Reducido */
-                font-size: 0.9rem;
-            }
+            /* BOTÓN AUDITORÍA */
+            .cta-btn { padding: 12px 25px; font-size: 0.9rem; }
 
-            /* Títulos de secciones */
+            /* SECCIONES */
             .section-title { font-size: 1.8rem; margin-bottom: 40px; }
 
-            /* 3. PORTFOLIO COMPACTO (Con imágenes) */
-            .gallery-container { height: 250px; } /* Altura móvil para las fotos */
-            
-            .project-details-container { 
-                min-height: 320px; /* Asegura espacio para el texto */
-            }
+            /* PORTFOLIO */
+            .gallery-container { height: 250px; } 
+            .project-details-container { min-height: 320px; }
 
-            .project-details { 
-                padding: 20px; /* Menos relleno */
-            }
-
-            .project-details h3 {
-                font-size: 1.2rem; /* Título más pequeño */
-                margin-bottom: 10px;
-            }
-
-            .project-details p {
-                font-size: 0.85rem; /* Texto compacto */
-                line-height: 1.4;
-                margin-bottom: 10px;
-            }
+            .project-details { padding: 20px; }
+            .project-details h3 { font-size: 1.2rem; margin-bottom: 10px; }
+            .project-details p { font-size: 0.85rem; line-height: 1.4; margin-bottom: 10px; }
 
             .tag { font-size: 0.65rem; padding: 4px 8px; }
             .demo-link { margin-top: 10px; font-size: 0.85rem; }
 
-            /* 4. TÍTULO CONTACTO: Una sola línea */
-            .contact-section h2.section-title {
-                font-size: 1.5rem; /* Forzado a una línea */
-                white-space: nowrap; /* Evita que salte de línea si cabe justo */
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+            /* CONTACTO */
+            .contact-section h2.section-title { font-size: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         }
     </style>
 </head>
@@ -240,6 +217,7 @@
         <div class="agency-badge reveal">Yeray Agency IA</div>
         <div class="reveal">
             <h1>Tu negocio, operando al <span class="highlight">100%</span>.<br>Sin ti.</h1>
+            
             <p class="subtitle">Creo ecosistemas digitales que automatizan procesos, capturan clientes y escalan tu facturación mientras recuperas tu tiempo.</p>
             <a href="#contacto" class="cta-btn">Solicitar Auditoría</a>
         </div>
@@ -270,11 +248,11 @@
             
             <div class="gallery-container">
                 <div class="gallery-item" data-slide="1">
-                    <img src="image_11.png" alt="Web Matrix Resultado">
+                    <img src="web.jpg" alt="Web Matrix Resultado">
                 </div>
 
                 <div class="gallery-item" data-slide="2">
-                     <img src="image_12.png" alt="Sistemas Automatizados">
+                     <img src="sistema.jpg" alt="Sistemas Automatizados">
                 </div>
             </div>
 
@@ -366,7 +344,7 @@
 
         galleryItems.forEach(item => observerSlider.observe(item));
 
-        // 3. WEBHOOK FORMULARIO
+        // 3. WEBHOOK
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
