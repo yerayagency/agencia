@@ -10,7 +10,7 @@
         :root {
             --bg-color: #050505;
             --card-bg: rgba(20, 20, 20, 0.6);
-            --accent: #2bdeb3; /* Tu verde marca, pero más elegante */
+            --accent: #2bdeb3; /* Tu verde marca elegante */
             --accent-glow: rgba(43, 222, 179, 0.3);
             --text-main: #ffffff;
             --text-muted: #9ca3af;
@@ -22,35 +22,25 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Outfit', sans-serif; /* Fuente más "Tech" que Inter */
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* --- FONDO TECH GRID (Diferenciación) --- */
-        .grid-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            opacity: 0.3;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) scale(2);
-            animation: gridMove 20s linear infinite;
+        /* --- FONDO AMBIENTAL (Recuperado de V1) --- */
+        .ambient-light {
+            position: fixed; top: -20%; left: -20%; width: 80vw; height: 80vw;
+            background: radial-gradient(circle, rgba(43, 222, 179, 0.1), transparent 60%); /* Verde */
+            border-radius: 50%; z-index: -1; opacity: 0.5;
+            animation: floatLight 15s infinite alternate ease-in-out;
+        }
+        .ambient-light.two { 
+            top: auto; bottom: -20%; left: auto; right: -10%; 
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%); /* Un toque azul sutil */
+            animation-delay: 7s; 
         }
 
-        @keyframes gridMove { 0% { transform: perspective(500px) rotateX(60deg) translateY(0) scale(2); } 100% { transform: perspective(500px) rotateX(60deg) translateY(50px) scale(2); } }
-
-        /* Sombra viñeta para que no sea plano */
-        .vignette {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 40%, #050505 100%);
-            z-index: -1;
-            pointer-events: none;
-        }
+        @keyframes floatLight { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 30px) scale(1.1); } }
 
         /* --- UTILIDADES --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
@@ -59,186 +49,133 @@
 
         /* --- HERO --- */
         header {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
+            min-height: 90vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 20px; position: relative;
         }
 
         .agency-badge {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-            padding: 8px 20px;
-            border-radius: 50px;
-            background: rgba(0,0,0,0.5);
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--text-muted); margin-bottom: 30px; border: 1px solid var(--border);
+            padding: 8px 25px; border-radius: 50px; background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            font-size: clamp(2.5rem, 5vw, 5rem); /* Responsive */
-            font-weight: 700;
-            line-height: 1.1;
+            font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.1;
             margin-bottom: 25px;
-            background: linear-gradient(to bottom right, #fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            /* Degradado sutil de blanco a gris claro */
+            background: linear-gradient(to bottom right, #ffffff, #b3b3b3);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
+            font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin-bottom: 50px; font-weight: 300;
         }
 
         .cta-btn {
-            padding: 18px 40px;
-            background: var(--text-main);
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px; /* Bordes menos redondos = más serio */
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
+            padding: 20px 45px; background: var(--text-main); color: #000;
+            text-decoration: none; font-weight: bold; border-radius: 4px;
+            transition: all 0.3s ease; display: inline-block; letter-spacing: 1px;
         }
-
-        .cta-btn:hover {
-            background: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-2px);
-        }
+        .cta-btn:hover { background: var(--accent); box-shadow: 0 5px 30px var(--accent-glow); transform: translateY(-3px); }
 
         /* --- SERVICIOS --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 120px 20px; }
         .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: left; border-left: 4px solid var(--accent); padding-left: 20px; }
-
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border: 1px solid var(--border);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg); padding: 40px; border: 1px solid var(--border);
+            transition: 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(5px);
         }
-
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0%;
-            background: var(--accent); transition: 0.4s;
-        }
-
-        .card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
-        .card:hover::before { height: 100%; }
-
+        .card:hover { transform: translateY(-7px); border-color: var(--accent); }
         .card h3 { margin-bottom: 15px; font-size: 1.5rem; color: #fff; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .card p { color: var(--text-muted); font-size: 1rem; font-weight: 300; }
 
-        /* --- PORTFOLIO (GALLERY STYLE) --- */
+        /* --- PORTFOLIO SINCRONIZADO (JS) --- */
         .project-showcase {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
         }
-
-        /* Aquí es donde pondremos tus imágenes */
         .gallery-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            background: #000;
-            height: 400px; /* Altura de la zona de fotos */
-            align-items: center;
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            height: 450px; /* Altura de la zona de fotos */
+            align-items: center; -webkit-overflow-scrolling: touch;
         }
+        .gallery-container::-webkit-scrollbar { display: none; } /* Ocultar scrollbar */
         
-        /* Ocultar barra de scroll fea */
-        .gallery-container::-webkit-scrollbar { height: 8px; }
-        .gallery-container::-webkit-scrollbar-track { background: #111; }
-        .gallery-container::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-
         .gallery-item {
-            flex: 0 0 100%; /* Cada foto ocupa el 100% del ancho */
-            scroll-snap-align: center;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            border-right: 1px solid #222;
+            flex: 0 0 100%; scroll-snap-align: center; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            position: relative; border-right: 1px solid #1a1a1a; background: #0a0a0a;
         }
+        .gallery-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .gallery-item img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
+        .placeholder-text { color: #555; font-family: monospace; font-size: 1.2rem; text-align: center; padding: 20px;}
 
-        /* Placeholder por si no hay imagen aun */
-        .placeholder-text {
-            color: #444; font-family: monospace; font-size: 1.5rem; text-align: center;
+        /* Transición suave para los textos */
+        .project-details-container { position: relative; min-height: 250px; }
+        .project-details { 
+            padding: 40px; position: absolute; top:0; left:0; width: 100%;
+            opacity: 0; transition: opacity 0.4s ease-in-out; pointer-events: none;
         }
+        .project-details.active-details { opacity: 1; pointer-events: auto; z-index: 2; }
 
-        .project-details { padding: 40px; }
-        .tag-list { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tag-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
         .tag { font-size: 0.75rem; border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; text-transform: uppercase; }
-
         .demo-link {
             display: inline-flex; align-items: center; gap: 10px;
-            color: #fff; text-decoration: none; font-weight: bold; margin-top: 20px;
-            border-bottom: 1px solid var(--accent); padding-bottom: 5px;
+            color: #fff; text-decoration: none; font-weight: bold; margin-top: 30px;
+            border-bottom: 2px solid var(--accent); padding-bottom: 5px; transition: 0.3s;
         }
-        .demo-link:hover { color: var(--accent); }
+        .demo-link:hover { color: var(--accent); border-color: transparent; }
 
         /* --- CONTACTO --- */
-        .contact-section { text-align: center; max-width: 700px; margin: 0 auto; }
-        
-        input, textarea {
-            width: 100%; padding: 18px; margin-bottom: 20px;
+        .contact-section { text-align: center; max-width: 600px; margin: 0 auto; }
+        input, textarea, select {
+            width: 100%; padding: 18px; margin-bottom: 15px;
             background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            color: white; font-family: 'Outfit', sans-serif; transition: 0.3s;
+            color: white; font-family: 'Outfit', sans-serif; transition: 0.3s; border-radius: 4px;
         }
-        input:focus, textarea:focus { border-color: var(--accent); outline: none; background: rgba(255,255,255,0.05); }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; background: rgba(0,0,0,0.2); }
+        select { appearance: none; color: var(--text-muted); } /* Estilo para el select */
 
         button.submit-btn {
-            width: 100%; padding: 18px;
-            background: var(--accent); color: #000;
-            border: none; font-weight: bold; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.3s;
+            width: 100%; padding: 18px; background: var(--accent); color: #000;
+            border: none; font-weight: bold; cursor: pointer; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; border-radius: 4px;
         }
-        button.submit-btn:hover { background: #fff; }
+        button.submit-btn:hover { background: #fff; box-shadow: 0 5px 20px var(--accent-glow); }
+
+        /* --- FOOTER LEGAL --- */
+        footer {
+            text-align: center; padding: 60px 20px; color: #555; font-size: 0.9rem;
+            border-top: 1px solid var(--border); margin-top: 80px;
+            background: rgba(0,0,0,0.2);
+        }
+        .footer-links { margin-top: 20px; display: flex; justify-content: center; gap: 30px; }
+        .footer-links a { color: #777; text-decoration: none; transition: 0.3s; font-size: 0.8rem;}
+        .footer-links a:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            .section-title { font-size: 2rem; }
-            .gallery-container { height: 250px; } /* Más bajito en móvil */
+            h1 { font-size: 3rem; }
+            .subtitle { font-size: 1.1rem; }
+            .gallery-container { height: 300px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-bg"></div>
-    <div class="vignette"></div>
+    <div class="ambient-light"></div>
+    <div class="ambient-light two"></div>
 
     <header>
         <div class="agency-badge reveal">Yeray Agency IA</div>
         <div class="reveal">
-            <h1>No vendo webs.<br><span class="highlight">Vendo sistemas.</span></h1>
-            <p class="subtitle">Diseño Landing Pages conectadas a automatizaciones inteligentes.<br>Ahorra tiempo, captura leads y deja de trabajar como un robot.</p>
-            <a href="#contacto" class="cta-btn">Solicitar Auditoría</a>
+            <h1>Tu negocio, operando al <span class="highlight">100%</span>.<br>Sin ti.</h1>
+            <p class="subtitle">Creo ecosistemas digitales que automatizan procesos, capturan clientes y escalan tu facturación mientras recuperas tu tiempo.</p>
+            <a href="#contacto" class="cta-btn">Solicitar Auditoría Gratuita</a>
         </div>
     </header>
 
@@ -246,86 +183,140 @@
         <h2 class="section-title">Soluciones</h2>
         <div class="grid">
             <div class="card">
-                <h3>⚡ Diseño Web High-End</h3>
-                <p>Landing pages minimalistas enfocadas en conversión pura. Sin adornos innecesarios. Rápidas, limpias y listas para vender.</p>
+                <h3>⚡ Diseño Web Estratégico</h3>
+                <p>No solo webs bonitas. Creamos herramientas de venta optimizadas para convertir visitantes en clientes desde el primer clic.</p>
             </div>
             <div class="card">
-                <h3>⚙️ Automatización Avanzada</h3>
-                <p>Conecto tu web con tu email, CRM o Telegram. Creamos flujos lógicos que trabajan mientras tú duermes.</p>
+                <h3>⚙️ Automatización de Procesos</h3>
+                <p>Si lo haces repetidamente, lo automatizamos. Conectamos tus herramientas (CRM, Email, Hojas de cálculo) para que trabajen solas.</p>
             </div>
             <div class="card">
-                <h3>🧠 Ecosistemas IA</h3>
-                <p>Integración real de Inteligencia Artificial para filtrar clientes, redactar respuestas y cualificar leads automáticamente.</p>
+                <h3>🤖 Integración de IA Real</h3>
+                <p>Implementamos Inteligencia Artificial para filtrar leads, redactar respuestas personalizadas y analizar datos en tiempo real.</p>
             </div>
         </div>
     </section>
 
     <section class="container reveal">
-        <h2 class="section-title">Casos de Éxito</h2>
+        <h2 class="section-title">Casos de Estudio</h2>
         
         <div class="project-showcase">
             
             <div class="gallery-container">
-                <div class="gallery-item">
+                
+                <div class="gallery-item" data-slide="1">
                     <div class="placeholder-text">
-                        [ AQUÍ IRÁ LA CAPTURA DE<br>TU WEB MATRIX ]
-                        <br><span style="font-size:0.8rem; color:#666">Desliza para ver el backend ⮕</span>
+                        [ FOTO 1: RESULTADO FINAL ]<br>
+                        (Tu web Matrix)<br><br>
+                        <span style="font-size:0.9rem; color:var(--accent)">← Desliza para ver las tripas →</span>
                     </div>
                     </div>
 
-                <div class="gallery-item" style="background: #111;">
-                    <div class="placeholder-text" style="color: var(--accent)">
-                        [ AQUÍ IRÁ LA CAPTURA DE<br>TU FLUJO DE TRABAJO ]
+                <div class="gallery-item" data-slide="2" style="background: #0f0f0f;">
+                     <div class="placeholder-text" style="color: #777;">
+                        [ FOTO 2: LA MAQUINARIA ]<br>
+                        (Captura de tu flujo n8n complejo)
                     </div>
                     </div>
             </div>
 
-            <div class="project-details">
-                <div class="tag-list">
-                    <span class="tag">Web Inmersiva</span>
-                    <span class="tag">Captación Leads</span>
-                    <span class="tag">Integración IA</span>
+            <div class="project-details-container">
+                
+                <div class="project-details active-details" id="details-1">
+                    <div class="tag-list">
+                        <span class="tag">Frontend Inmersivo</span>
+                        <span class="tag">Captación de Leads</span>
+                    </div>
+                    <h3>El Resultado: Experiencia de Usuario</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        Una interfaz de usuario diseñada para romper patrones. La estética "terminal hacker" aumenta la retención y convierte una simple suscripción a newsletter en una experiencia memorable. El usuario percibe valor inmediato.
+                    </p>
+                    <a href="https://yerayagency.github.io/glitch/" target="_blank" class="demo-link">Ver Demo en Vivo ↗</a>
                 </div>
-                <h3>The Matrix Newsletter System</h3>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">
-                    Un sistema completo de "Anti-Procrastinación". El usuario se enfrenta a una interfaz terminal inmersiva. 
-                    Por detrás, un sistema verifica el email, genera contenido personalizado con GPT-4o, lo formatea en HTML y notifica el reporte vía Telegram al administrador.
-                </p>
-                <a href="https://yerayagency.github.io/glitch/" target="_blank" class="demo-link">Ver Demo en Vivo ↗</a>
+
+                <div class="project-details" id="details-2">
+                     <div class="tag-list">
+                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Backend Complex</span>
+                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">IA + n8n + Telegram</span>
+                    </div>
+                    <h3>La Maquinaria: Automatización Invisible</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        Lo que nadie ve. Un flujo complejo que: 1) Valida el email, 2) Usa GPT-4o para generar contenido único, 3) Formatea en HTML, 4) Envía vía Gmail y 5) Notifica en tiempo real al administrador por Telegram. Cero intervención humana.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <section class="container reveal" id="contacto">
         <div class="contact-section">
-            <h2 class="section-title" style="text-align: center; border:none; padding:0;">Empecemos</h2>
-            <p class="subtitle" style="margin: 0 auto 40px auto;">Cuéntame qué proceso manual odias hacer repetidamente.</p>
+            <h2 class="section-title" style="text-align: center; border:none; padding:0;">Hablemos de tu proyecto</h2>
+            <p class="subtitle" style="margin: 0 auto 40px auto;">Auditoría inicial gratuita. Sin compromiso.</p>
             
             <form>
-                <input type="text" placeholder="Nombre / Empresa" required>
-                <input type="email" placeholder="Correo Electrónico" required>
-                <textarea rows="4" placeholder="¿Qué necesitas automatizar?"></textarea>
-                <button type="submit" class="submit-btn">INICIAR SISTEMA</button>
+                <input type="text" placeholder="Tu Nombre / Empresa" required>
+                <input type="email" placeholder="Tu Correo Electrónico" required>
+                
+                <select required>
+                    <option value="" disabled selected>¿Qué servicio necesitas?</option>
+                    <option value="automatizacion">Automatización de Procesos</option>
+                    <option value="web">Diseño Web Estratégico</option>
+                    <option value="ecosistema">Ecosistema Completo (Web + IA)</option>
+                    <option value="otro">Otro / No estoy seguro</option>
+                </select>
+
+                <textarea rows="4" placeholder="Cuéntame brevemente tu objetivo o problema actual..."></textarea>
+                <button type="submit" class="submit-btn">SOLICITAR ANÁLISIS</button>
             </form>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 50px; color: #444; font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 50px;">
-        &copy; 2026 Yeray Agency IA. All Systems Operational.<br>
-        <span style="color: var(--accent)">Designed by Humans. Powered by Code.</span>
+    <footer>
+        © 2026 Yeray Agency IA.<br>
+        Sistemas diseñados para la nueva era digital.
+        
+        <div class="footer-links">
+            <a href="#">Aviso Legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
     </footer>
 
     <script>
-        // ANIMACIÓN SCROLL REVEAL
-        const observer = new IntersectionObserver((entries) => {
+        // --- 1. ANIMACIÓN SCROLL REVEAL (Aparición suave) ---
+        const observerReveal = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observerReveal.observe(el));
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- 2. SINCRONIZACIÓN DEL SLIDER (La magia) ---
+        // Detecta qué imagen está visible y muestra su texto correspondiente
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const detailBlocks = document.querySelectorAll('.project-details');
+
+        const observerSlider = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Si la imagen es visible en más del 50% en pantalla
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    const slideIndex = entry.target.getAttribute('data-slide');
+                    
+                    // 1. Ocultar todos los textos
+                    detailBlocks.forEach(block => block.classList.remove('active-details'));
+                    
+                    // 2. Mostrar solo el texto que coincide con la imagen visible
+                    const activeDetail = document.getElementById(`details-${slideIndex}`);
+                    if (activeDetail) activeDetail.classList.add('active-details');
+                }
+            });
+        }, { 
+            root: document.querySelector('.gallery-container'), // El contenedor que tiene scroll
+            threshold: 0.6 // Se activa cuando el 60% de la imagen es visible
+        });
+
+        galleryItems.forEach(item => observerSlider.observe(item));
     </script>
 
 </body>
