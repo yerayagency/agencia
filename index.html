@@ -10,8 +10,8 @@
         :root {
             --bg-color: #050505;
             --card-bg: rgba(20, 20, 20, 0.6);
-            --accent: #2bdeb3; /* Tu verde marca */
-            --accent-glow: rgba(43, 222, 179, 0.4); /* Más brillo */
+            --accent: #2bdeb3; 
+            --accent-glow: rgba(43, 222, 179, 0.4); 
             --text-main: #ffffff;
             --text-muted: #9ca3af;
             --border: rgba(255, 255, 255, 0.1);
@@ -27,17 +27,15 @@
             line-height: 1.6;
         }
 
-        /* --- FONDO AMBIENTAL (MÁS COLOR / VIBRANTE) --- */
+        /* --- FONDO AMBIENTAL --- */
         .ambient-light {
             position: fixed; top: -10%; left: -10%; width: 70vw; height: 70vw;
-            /* He subido la opacidad del color para que resalte más */
             background: radial-gradient(circle, rgba(43, 222, 179, 0.25), transparent 65%); 
-            border-radius: 50%; z-index: -1; opacity: 0.8; /* Más visible */
+            border-radius: 50%; z-index: -1; opacity: 0.8; 
             animation: floatLight 12s infinite alternate ease-in-out;
         }
         .ambient-light.two { 
             top: auto; bottom: -10%; left: auto; right: -5%; 
-            /* Un azul/violeta sutil para contraste */
             background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 65%);
             animation-delay: 6s; opacity: 0.7;
         }
@@ -58,24 +56,24 @@
 
         .agency-badge {
             font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;
-            color: var(--text-muted); margin-bottom: 30px; border: 1px solid var(--border);
+            color: var(--text-muted); margin-bottom: 25px; border: 1px solid var(--border);
             padding: 8px 25px; border-radius: 50px; background: rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
         }
 
         h1 {
-            /* TAMAÑO REDUCIDO: Antes era 5.5rem, ahora máximo 4.2rem */
-            font-size: clamp(2.5rem, 5vw, 4.2rem); 
+            /* Desktop size */
+            font-size: 4.2rem; 
             font-weight: 700; line-height: 1.1;
             margin-bottom: 25px;
             background: linear-gradient(to bottom right, #ffffff, #b3b3b3);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            max-width: 900px; /* Evita que se estire demasiado */
+            max-width: 900px; 
         }
 
         .subtitle {
             font-size: 1.2rem; color: var(--text-muted); max-width: 700px; 
-            margin: 0 auto 50px auto; /* CENTRADO PERFECTO */
+            margin: 0 auto 50px auto; 
             font-weight: 300;
         }
 
@@ -83,6 +81,7 @@
             padding: 18px 40px; background: var(--text-main); color: #000;
             text-decoration: none; font-weight: bold; border-radius: 4px;
             transition: all 0.3s ease; display: inline-block; letter-spacing: 1px;
+            font-size: 1rem;
         }
         .cta-btn:hover { background: var(--accent); box-shadow: 0 5px 30px var(--accent-glow); transform: translateY(-3px); }
 
@@ -120,22 +119,21 @@
         .placeholder-text { color: #555; font-family: monospace; font-size: 1.2rem; text-align: center; padding: 20px;}
 
         /* Zona de textos */
-        .project-details-container { position: relative; min-height: 280px; } /* Un poco más de altura para que respire */
+        .project-details-container { position: relative; min-height: 280px; } 
         .project-details { 
             padding: 40px; position: absolute; top:0; left:0; width: 100%;
             opacity: 0; transition: opacity 0.4s ease-in-out; pointer-events: none;
-            display: flex; flex-direction: column; align-items: flex-start; /* Alineación izquierda */
+            display: flex; flex-direction: column; align-items: flex-start; 
         }
         .project-details.active-details { opacity: 1; pointer-events: auto; z-index: 2; }
 
         .tag-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
         .tag { font-size: 0.75rem; border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; text-transform: uppercase; }
         
-        /* ESTILO DEL LINK (V2 RECUPERADO) */
         .demo-link {
             display: inline-flex; align-items: center; gap: 10px;
             color: #fff; text-decoration: none; font-weight: bold; 
-            margin-top: 25px; /* Separación correcta */
+            margin-top: 25px; 
             border-bottom: 1px solid var(--accent); padding-bottom: 5px; 
             transition: 0.3s;
         }
@@ -169,10 +167,60 @@
         .footer-links a { color: #777; text-decoration: none; transition: 0.3s; font-size: 0.8rem;}
         .footer-links a:hover { color: var(--accent); }
 
+        /* =========================================
+           📱 OPTIMIZACIÓN MÓVIL (MOBILE FIRST FIX)
+           ========================================= */
         @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            .subtitle { font-size: 1.1rem; }
-            .gallery-container { height: 300px; }
+            
+            /* 1. HERO TITLE: Comprimido para ocupar menos líneas */
+            h1 { 
+                font-size: 2.3rem; /* Mucho más pequeño */
+                line-height: 1.1; 
+                padding: 0 10px; /* Menos padding lateral para que quepa más texto */
+            }
+            .subtitle { font-size: 1rem; margin-bottom: 30px; padding: 0 10px; }
+
+            /* 2. BOTÓN AUDITORÍA: Más pequeño y manejable */
+            .cta-btn {
+                padding: 12px 25px; /* Reducido */
+                font-size: 0.9rem;
+            }
+
+            /* Títulos de secciones */
+            .section-title { font-size: 1.8rem; margin-bottom: 40px; }
+
+            /* 3. PORTFOLIO COMPACTO (Para ver todo sin scroll) */
+            .gallery-container { height: 250px; } /* Imagen más pequeña */
+            
+            .project-details-container { 
+                min-height: 320px; /* Asegura espacio */
+            }
+
+            .project-details { 
+                padding: 20px; /* Menos relleno */
+            }
+
+            .project-details h3 {
+                font-size: 1.2rem; /* Título más pequeño */
+                margin-bottom: 10px;
+            }
+
+            .project-details p {
+                font-size: 0.85rem; /* Texto compacto */
+                line-height: 1.4;
+                margin-bottom: 10px;
+            }
+
+            .tag { font-size: 0.65rem; padding: 4px 8px; }
+            .demo-link { margin-top: 10px; font-size: 0.85rem; }
+
+            /* 4. TÍTULO CONTACTO: Una sola línea */
+            .contact-section h2.section-title {
+                font-size: 1.5rem; /* Forzado a una línea */
+                white-space: nowrap; /* Evita que salte de línea si cabe justo */
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     </style>
 </head>
@@ -186,7 +234,7 @@
         <div class="reveal">
             <h1>Tu negocio, operando al <span class="highlight">100%</span>.<br>Sin ti.</h1>
             <p class="subtitle">Creo ecosistemas digitales que automatizan procesos, capturan clientes y escalan tu facturación mientras recuperas tu tiempo.</p>
-            <a href="#contacto" class="cta-btn">Solicitar Auditoría Gratuita</a>
+            <a href="#contacto" class="cta-btn">Solicitar Auditoría</a>
         </div>
     </header>
 
@@ -214,12 +262,11 @@
         <div class="project-showcase">
             
             <div class="gallery-container">
-                
                 <div class="gallery-item" data-slide="1">
                     <div class="placeholder-text">
                         [ FOTO 1: WEB ]<br>
                         (Tu web Matrix)<br><br>
-                        <span style="font-size:0.9rem; color:var(--accent)">← Desliza para ver el sistema →</span>
+                        <span style="font-size:0.8rem; color:var(--accent)">← Desliza →</span>
                     </div>
                     </div>
 
@@ -236,23 +283,23 @@
                 <div class="project-details active-details" id="details-1">
                     <div class="tag-list">
                         <span class="tag">Frontend Inmersivo</span>
-                        <span class="tag">Captación de Leads</span>
+                        <span class="tag">Captación Leads</span>
                     </div>
-                    <h3>El Resultado: Experiencia de Usuario</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 0;">
-                        Una interfaz diseñada para romper patrones. La estética "terminal" aumenta la retención y convierte una simple suscripción en una experiencia memorable. El usuario percibe valor inmediato.
+                    <h3>El Resultado: Experiencia UX</h3>
+                    <p style="color: var(--text-muted);">
+                        Una interfaz diseñada para romper patrones. La estética "terminal" aumenta la retención y convierte una simple suscripción en una experiencia memorable.
                     </p>
                     <a href="https://yerayagency.github.io/glitch/" target="_blank" class="demo-link">Ver Demo en Vivo ↗</a>
                 </div>
 
                 <div class="project-details" id="details-2">
                      <div class="tag-list">
-                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Backend Complex</span>
-                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Sistemas Automatizados</span>
+                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Backend</span>
+                        <span class="tag" style="border-color: #3b82f6; color: #3b82f6;">Sistemas Auto</span>
                     </div>
-                    <h3>El Motor: Automatización Invisible</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">
-                        Lo que nadie ve. Un flujo complejo que valida emails, genera contenido único con IA, formatea el código y notifica al administrador en tiempo real. Cero intervención humana.
+                    <h3>El Motor: Automatización</h3>
+                    <p style="color: var(--text-muted);">
+                        Lo que nadie ve. Un flujo complejo que valida emails, genera contenido único con IA, formatea el código y notifica al administrador en tiempo real.
                     </p>
                 </div>
 
@@ -265,11 +312,11 @@
             <h2 class="section-title" style="text-align: center; border:none; padding:0;">Hablemos de tu proyecto</h2>
             <p class="subtitle" style="margin: 0 auto 40px auto;">Auditoría inicial gratuita. Sin compromiso.</p>
             
-            <form>
-                <input type="text" placeholder="Tu Nombre / Empresa" required>
-                <input type="email" placeholder="Tu Correo Electrónico" required>
+            <form id="contactForm">
+                <input type="text" id="nombre" placeholder="Tu Nombre / Empresa" required>
+                <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
                 
-                <select required>
+                <select id="servicio" required>
                     <option value="" disabled selected>¿Qué servicio necesitas?</option>
                     <option value="automatizacion">Automatización de Procesos</option>
                     <option value="web">Diseño Web Estratégico</option>
@@ -277,8 +324,8 @@
                     <option value="otro">Otro / No estoy seguro</option>
                 </select>
 
-                <textarea rows="4" placeholder="Cuéntame brevemente tu objetivo..."></textarea>
-                <button type="submit" class="submit-btn">SOLICITAR ANÁLISIS</button>
+                <textarea id="mensaje" rows="4" placeholder="Cuéntame brevemente tu objetivo..."></textarea>
+                <button type="submit" class="submit-btn" id="submitBtn">SOLICITAR ANÁLISIS</button>
             </form>
         </div>
     </section>
@@ -294,7 +341,7 @@
     </footer>
 
     <script>
-        // ANIMACIÓN SCROLL
+        // 1. SCROLL REVEAL
         const observerReveal = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -302,8 +349,7 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observerReveal.observe(el));
 
-
-        // SINCRONIZACIÓN SLIDER
+        // 2. SLIDER
         const galleryItems = document.querySelectorAll('.gallery-item');
         const detailBlocks = document.querySelectorAll('.project-details');
 
@@ -319,6 +365,60 @@
         }, { root: document.querySelector('.gallery-container'), threshold: 0.6 });
 
         galleryItems.forEach(item => observerSlider.observe(item));
+
+        // 3. WEBHOOK FORMULARIO
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'ENVIANDO...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                servicio: document.getElementById('servicio').value,
+                mensaje: document.getElementById('mensaje').value,
+                fecha: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch('https://yerayagency.app.n8n.cloud/webhook/Portfolio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    btn.innerText = '¡SOLICITUD ENVIADA!';
+                    btn.style.background = '#ffffff'; 
+                    btn.style.color = '#000000';
+                    document.getElementById('contactForm').reset();
+                    
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.style.background = ''; 
+                        btn.style.color = '';
+                        btn.style.opacity = '1';
+                        btn.disabled = false;
+                    }, 4000);
+                } else { throw new Error('Error servidor'); }
+
+            } catch (error) {
+                console.error('Error:', error);
+                btn.innerText = 'ERROR DE CONEXIÓN';
+                btn.style.background = '#ff4444';
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
     </script>
 
 </body>
