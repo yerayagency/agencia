@@ -196,11 +196,16 @@
         .footer-links a:hover { color: var(--accent); }
 
         /* =========================================
-           📱 MÓVIL (AJUSTES FINALES)
+           📱 MÓVIL (AJUSTES TÍTULO V13)
            ========================================= */
         @media (max-width: 768px) {
             
-            h1 { font-size: 1.8rem; line-height: 1.3; padding: 0 5px; }
+            /* TÍTULO: Letra un poco más pequeña para que "100%" no salte de línea */
+            h1 { 
+                font-size: 1.7rem; /* Reducido para asegurar 1 línea */
+                line-height: 1.3; 
+                padding: 0 5px; 
+            }
             .subtitle { font-size: 1rem; margin-bottom: 30px; padding: 0 10px; }
 
             .cta-btn { padding: 12px 25px; font-size: 0.9rem; }
@@ -217,7 +222,6 @@
 
             .contact-section h2.section-title { font-size: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             
-            /* Ajuste Hint */
             .swipe-hint { bottom: 10px; right: 10px; padding: 4px 10px; font-size: 0.65rem; }
         }
     </style>
@@ -232,12 +236,12 @@
         <div class="reveal">
             <h1>Tu negocio, operando al <span class="highlight">100%</span>.<br>Sin ti.</h1>
             <p class="subtitle">Creo ecosistemas digitales que automatizan procesos, capturan clientes y escalan tu facturación mientras recuperas tu tiempo.</p>
-            <a href="#contacto" class="cta-btn">Solicitar Auditoría</a>
+            <a href="#contacto" class="cta-btn">Contactar Ahora</a>
         </div>
     </header>
 
     <section class="container reveal">
-        <h2 class="section-title">Soluciones</h2>
+        <h2 class="section-title">Servicios</h2>
         <div class="grid">
             <div class="card">
                 <h3>⚡ Diseño Web Estratégico</h3>
@@ -258,21 +262,18 @@
         <h2 class="section-title">Implementación Real</h2>
         
         <div class="project-showcase">
-            
             <div class="swipe-hint">← Desliza →</div>
 
             <div class="gallery-container">
                 <div class="gallery-item" data-slide="1">
                     <img src="web.png" alt="Web Matrix Resultado">
                 </div>
-
                 <div class="gallery-item" data-slide="2">
-                     <img src="sistema.jpg" alt="Sistemas Automatizados">
+                    <img src="sistema.jpg" alt="Sistemas Automatizados">
                 </div>
             </div>
 
             <div class="project-details-container">
-                
                 <div class="project-details active-details" id="details-1">
                     <div class="tag-list">
                         <span class="tag">Frontend Inmersivo</span>
@@ -295,7 +296,6 @@
                         Lo que nadie ve. Un flujo complejo que valida emails, genera contenido único con IA, formatea el código y notifica al administrador en tiempo real.
                     </p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -322,11 +322,11 @@
                 <div style="text-align: left; font-size: 0.8rem; color: #999; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
                     <input type="checkbox" id="legal-check" required style="width: auto; margin-top: 5px; cursor: pointer; accent-color: var(--accent);">
                     <label for="legal-check" style="cursor: pointer;">
-                        He leído y acepto la <a href="privacidad.html" style="color: var(--accent); text-decoration: none;">Política de Privacidad</a> y el <a href="legal.html" style="color: var(--accent); text-decoration: none;">Aviso Legal</a> para el tratamiento de mis datos.
+                        He leído y acepto la <a href="privacidad.html" style="color: var(--accent); text-decoration: none;">Política de Privacidad</a> y los <a href="legal.html" style="color: var(--accent); text-decoration: none;">Términos y Condiciones</a> para el tratamiento de mis datos.
                     </label>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">SOLICITAR ANÁLISIS</button>
+                <button type="submit" class="submit-btn" id="submitBtn">ENVIAR FORMULARIO</button>
             </form>
         </div>
     </section>
@@ -336,7 +336,7 @@
         Sistemas diseñados para la nueva era digital.
         
         <div class="footer-links">
-            <a href="legal.html">Aviso Legal</a>
+            <a href="legal.html">Términos y Condiciones</a>
             <a href="privacidad.html">Política de Privacidad</a>
         </div>
     </footer>
